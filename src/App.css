@@ -1,4 +1,10 @@
+body {
+    margin: 0;
+}
 .App {
+    margin: 0 auto;
+}
+/* .App {
   text-align: center;
 }
 
@@ -6,7 +12,7 @@
   height: 40vmin;
 }
 
-.App-header {
+.App {
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
@@ -19,4 +25,4 @@
 
 .App-link {
   color: #09d3ac;
-}
+} */
