@@ -1,12 +1,14 @@
 import React, { Component } from "react";
 import { Consumer } from "../context"
+import FormInputGroup from "./FormInputGroup"
 import uuid from "uuid"
 
 export default class AddContact extends Component {
     state = {
         name: "",
         email: "",
-        phone: ""
+        phone: "",
+        error: {}
     };
 
     handleChange = e => {
@@ -16,7 +18,21 @@ export default class AddContact extends Component {
     };
 
     handleSubmit = (dispatch, e)=>{
+        e.preventDefault();
         const {name, email, phone} = this.state;
+
+        if(name === ""){
+            this.setState({error:{name: "name is required"}});
+            return;
+        }
+        if(email === ""){
+            this.setState({error:{email: "email is required"}});
+            return;
+        }
+        if(phone === ""){
+            this.setState({error:{phone: "phone is required"}});
+            return;
+        }
 
         const newContact = {
             id: uuid(),
@@ -29,9 +45,10 @@ export default class AddContact extends Component {
         this.setState({
             name: "",
             email:"",
-            phone: ""
+            phone: "",
+            error:{}
         })
-        e.preventDefault();
+        
     };
 
     render() {
@@ -43,42 +60,36 @@ export default class AddContact extends Component {
                         <div className="card mb-4" style={{maxWidth:"80%",margin:"0 auto"}}>
                         <h4 className="card-header">Add Contact</h4>
                         <form className="card-body" onSubmit={this.handleSubmit.bind(this, dispatch)}>
-                            <div className="form-group">
-                            <label htmlFor="#name">Name</label>
-                            <input
+                            <FormInputGroup 
                             type="text"
                             name="name"
                             value={this.state.name}
                             onChange={this.handleChange}
                             id="name"
                             className="form-control"
-                            placeholder="Enter Name..."
-                        />
-                            </div>
-                           <div className="form-group">
-                           <label htmlFor="#email">Email</label>
-                           <input
-                           type="email"
+                            placeholder="Enter Name..." 
+                            error = {this.state.error.name}
+                            />
+                            <FormInputGroup 
+                            type="email"
                            name="email"
                            value={this.state.email}
                            onChange={this.handleChange}
                            id="email"
                            className="form-control"
                            placeholder="Enter Email..."
-                       />
-                           </div>
-                            <div className="form-group">
-                            <label htmlFor="#phone">Phone</label>
-                            <input
+                           error = {this.state.error.email}
+                            />
+                            <FormInputGroup 
                             type="tel"
                             name="phone"
                             value={this.state.phone}
                             onChange={this.handleChange}
                             id="phone"
                             className="form-control"
-                            placeholder="Enter Phone..."
-                        />
-                            </div>
+                            placeholder="Enter Phone..." 
+                            error = {this.state.error.phone}
+                            />
                                 <input type="submit" value="Add Contact" className="btn btn-light btn-block"/>
                            
                         </form>
