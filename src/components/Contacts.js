@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Consumer } from "../context";
+import { Link } from 'react-router-dom';
 import PropTypes from "prop-types";
 
 class Contacts extends Component {
@@ -24,7 +25,9 @@ class Contacts extends Component {
                     const { dispatch } = value;
                     return (
                         <div className="card card-body mb-3">
+                        
                             <h4>
+                                <img src="../../" className="mr-2 rounded" style={{height: "35px", width:"45px"}} alt={`${id}`}/>
                                 {name}{" "}
                                 <i
                                     style={cursor}
@@ -40,11 +43,18 @@ class Contacts extends Component {
                                     )}
                                     style={cursor}
                                 ></i>{" "}
+                                <Link to={`contact/edit/${id}`}>
+                                <i
+                                className="fa fas fa-pencil float-right text-dark mr-3"
+                                style={cursor}
+                            ></i>
+                                </Link>
+                                
                             </h4>
                             {this.state.showContactInfo ? (
                                 <ul className="list-group">
-                                    <li className="list-group-item">{email}</li>
-                                    <li className="list-group-item">{phone}</li>
+                                    <li className="list-group-item"> <a className="btn-link" href={`mailto: ${email}`}>{email}</a> </li>
+                                    <li className="list-group-item"><a className="btn-link" href={`tel: ${phone}`}>{phone}</a> </li>
                                 </ul>
                             ) : null}
                         </div>

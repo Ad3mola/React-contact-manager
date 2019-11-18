@@ -1,12 +1,15 @@
 import React, { Component } from "react";
-import { Consumer, Context } from "../context"
+import { Consumer } from "../context"
 import FormInputGroup from "./FormInputGroup"
+import {Context} from "../context"
 
-export default class AddContact extends Component {
-    static contextType = Context
+export default class EditContact extends Component {
+    static contextType = Context;
+   
     state = {
+        
         name: "",
-        email: "",
+        email:"",
         phone: "",
         error: {}
     };
@@ -16,6 +19,16 @@ export default class AddContact extends Component {
             [e.target.name]: e.target.value
         });
     };
+    
+    componentDidMount() {
+        const {id} = this.props.match.params;
+        const {name, email, phone} = this.context.contacts[id - 1];
+        this.setState({
+            name,
+            email,
+            phone
+        })
+    }
 
     handleSubmit = (dispatch, e)=>{
         e.preventDefault();
@@ -33,14 +46,15 @@ export default class AddContact extends Component {
             this.setState({error:{phone: "phone is required"}});
             return;
         }
-        const {contacts} = this.context
+        const {id} = this.props.match.params;
         const newContact = {
-            id: contacts.length === -1 ? 0 : contacts.length + 1,
+            id,
             name,
             email,
             phone
         };
-        dispatch({type: 'ADD_CONTACT', payload:newContact});
+        dispatch({type: 'EDIT_CONTACT', payload:newContact});
+        
 
         this.setState({
             name: "",
@@ -57,14 +71,15 @@ export default class AddContact extends Component {
             <Consumer>
                 {value => {
                     const {dispatch} = value;
+                    const {name, email, phone} = this.state;
                     return(
                         <div className="card mb-4" style={{maxWidth:"80%",margin:"0 auto"}}>
-                        <h4 className="card-header">Add Contact</h4>
+                        <h4 className="card-header">Edit Contact</h4>
                         <form className="card-body" onSubmit={this.handleSubmit.bind(this, dispatch)}>
                             <FormInputGroup 
                             type="text"
                             name="name"
-                            value={this.state.name}
+                            value={name}
                             onChange={this.handleChange}
                             id="name"
                             className="form-control"
@@ -74,7 +89,7 @@ export default class AddContact extends Component {
                             <FormInputGroup 
                             type="email"
                            name="email"
-                           value={this.state.email}
+                           value={email}
                            onChange={this.handleChange}
                            id="email"
                            className="form-control"
@@ -84,14 +99,14 @@ export default class AddContact extends Component {
                             <FormInputGroup 
                             type="tel"
                             name="phone"
-                            value={this.state.phone}
+                            value={phone}
                             onChange={this.handleChange}
                             id="phone"
                             className="form-control"
                             placeholder="Enter Phone..." 
                             error = {this.state.error.phone}
                             />
-                                <input type="submit" value="Add Contact" className="btn btn-light btn-block"/>
+                                <input type="submit" value="Edit Contact" className="btn btn-light btn-block"/>
                            
                         </form>
                     </div>

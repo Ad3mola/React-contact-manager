@@ -4,6 +4,19 @@ body {
 .App {
     margin: 0 auto;
 }
+
+/* @media (max-width: 576px) {
+    .navv {
+        display: block !important;
+        width: 100%;
+    }
+    .ul li .nav-link {
+        display: inline !important;
+    }
+    .ul {
+        display: inline !important;
+    }
+} */
 /* .App {
   text-align: center;
 }
