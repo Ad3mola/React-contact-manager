@@ -1,8 +1,9 @@
-import React, { Component } from "react";
-import FormInputGroup from "./FormInputGroup"
-import uuid from "uuid"
+import React, { Component } from 'react'
+import FormInputGroup from './FormInputGroup'
 import { connect } from 'react-redux'
- class AddContact extends Component {
+
+
+class EditContact extends Component {
     state = {
         name: "",
         email: "",
@@ -34,27 +35,24 @@ import { connect } from 'react-redux'
         }
 
         const newContact = {
-            id: uuid(),
             name,
             email,
             phone
         };
-        this.props.addContact(newContact)
+
         this.setState({
             name: "",
             email:"",
             phone: "",
             error:{}
         })
-
-        this.props.history.push('/')
         
     };
 
     render() {
         return(
                         <div className="card mb-4" style={{maxWidth:"80%",margin:"0 auto"}}>
-                        <h4 className="card-header">Add Contact</h4>
+                        <h4 className="card-header">Edit Contact</h4>
                         <form className="card-body" onSubmit={this.handleSubmit}>
                             <FormInputGroup 
                             type="text"
@@ -86,18 +84,10 @@ import { connect } from 'react-redux'
                             placeholder="Enter Phone..." 
                             error = {this.state.error.phone}
                             />
-                                <input type="submit" value="Add Contact" className="btn btn-light btn-block"/>
+                                <input type="submit" value="Edit Contact" className="btn btn-light btn-block"/>
                            
                         </form>
                     </div>
                     )}
 }
-const mapDispatchToProps = (dispatch) =>{
-    return{
-        addContact : newContact =>{
-            dispatch({type: 'ADD_CONTACT', newContact: newContact})
-        }
-    }
-}
-
-export default connect(null, mapDispatchToProps)(AddContact);
+export default connect()(EditContact);

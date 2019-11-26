@@ -31,7 +31,7 @@ const rootReducer = (state = initState, action) => {
     } else if(action.type === 'ADD_CONTACT'){
         return{
             ...state,
-            contacts: [...state, action.newContact]
+            contacts: [action.newContact, ...state.contacts]
         }
     }
     return state
