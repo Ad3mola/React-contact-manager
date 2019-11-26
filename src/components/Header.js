@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types';
+import {Link} from 'react-router-dom'
 
  function Header({branding}) {
     return (
@@ -10,7 +11,10 @@ import PropTypes from 'prop-types';
                     <div>
                         <ul className="navbar-nav mr-auto">
                             <li className="navbar-item">
-                                <a href="/" className="nav-link">Home</a>
+                                <Link to="/" className="nav-link">Home</Link>
+                            </li>
+                            <li className="navbar-item">
+                                <Link to="/contacts/add" className="nav-link">Add</Link>
                             </li>
                         </ul>
                     </div>

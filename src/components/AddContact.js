@@ -1,9 +1,8 @@
 import React, { Component } from "react";
-import { Consumer } from "../context"
 import FormInputGroup from "./FormInputGroup"
 import uuid from "uuid"
-
-export default class AddContact extends Component {
+import { connect } from 'react-redux'
+ class AddContact extends Component {
     state = {
         name: "",
         email: "",
@@ -17,7 +16,7 @@ export default class AddContact extends Component {
         });
     };
 
-    handleSubmit = (dispatch, e)=>{
+    handleSubmit = ( e)=>{
         e.preventDefault();
         const {name, email, phone} = this.state;
 
@@ -40,8 +39,7 @@ export default class AddContact extends Component {
             email,
             phone
         };
-        dispatch({type: 'ADD_CONTACT', payload:newContact});
-
+        this.props.addContact(newContact)
         this.setState({
             name: "",
             email:"",
@@ -53,13 +51,9 @@ export default class AddContact extends Component {
 
     render() {
         return(
-            <Consumer>
-                {value => {
-                    const {dispatch} = value;
-                    return(
                         <div className="card mb-4" style={{maxWidth:"80%",margin:"0 auto"}}>
                         <h4 className="card-header">Add Contact</h4>
-                        <form className="card-body" onSubmit={this.handleSubmit.bind(this, dispatch)}>
+                        <form className="card-body" onSubmit={this.handleSubmit}>
                             <FormInputGroup 
                             type="text"
                             name="name"
@@ -94,9 +88,14 @@ export default class AddContact extends Component {
                            
                         </form>
                     </div>
-                    )
-                }}
-            </Consumer>
-        )
+                    )}
+}
+const mapDispatchToProps = (dispatch) =>{
+    return{
+        addContact : newContact =>{
+            dispatch({type: 'ADD_CONTACT', newContact: newContact})
+        }
     }
 }
+
+export default connect(null, mapDispatchToProps)(AddContact);

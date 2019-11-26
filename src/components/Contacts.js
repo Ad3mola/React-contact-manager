@@ -1,14 +1,10 @@
 import React, { Component } from "react";
-import { Consumer } from "../context";
 import PropTypes from "prop-types";
+import { connect } from "react-redux";
 
 class Contacts extends Component {
     state = {
         showContactInfo: false
-    };
-
-    deleteContact = (id, dispatch) => {
-        dispatch({ type: "DELETE_CONTACT", payload: id });
     };
 
     handleChange = () => {
@@ -16,41 +12,33 @@ class Contacts extends Component {
             showContactInfo: !this.state.showContactInfo
         });
     };
+    handleDelete = () =>{
+        this.props.deleteContact(this.props.contact.id)
+    }
     render() {
-        const { name, phone, email, id } = this.props.contact;
+        const { name, phone, email } = this.props.contact;
         return (
-            <Consumer>
-                {value => {
-                    const { dispatch } = value;
-                    return (
-                        <div className="card card-body mb-3">
-                            <h4>
-                                {name}{" "}
-                                <i
-                                    style={cursor}
-                                    className="fa fas fa-sort-down"
-                                    onClick={this.handleChange}
-                                ></i>{" "}
-                                <i
-                                    className="fa fas fa-times float-right text-danger"
-                                    onClick={this.deleteContact.bind(
-                                        this,
-                                        id,
-                                        dispatch
-                                    )}
-                                    style={cursor}
-                                ></i>{" "}
-                            </h4>
-                            {this.state.showContactInfo ? (
-                                <ul className="list-group">
-                                    <li className="list-group-item">{email}</li>
-                                    <li className="list-group-item">{phone}</li>
-                                </ul>
-                            ) : null}
-                        </div>
-                    );
-                }}
-            </Consumer>
+            <div className="card card-body mb-3">
+                <h4>
+                    {name}{" "}
+                    <i
+                        style={cursor}
+                        className="fa fas fa-sort-down"
+                        onClick={this.handleChange}
+                    ></i>{" "}
+                    <i
+                        className="fa fas fa-times float-right text-danger"
+                        style={cursor}
+                        onClick={this.handleDelete}
+                    ></i>{" "}
+                </h4>
+                {this.state.showContactInfo ? (
+                    <ul className="list-group">
+                        <li className="list-group-item">{email}</li>
+                        <li className="list-group-item">{phone}</li>
+                    </ul>
+                ) : null}
+            </div>
         );
     }
 }
@@ -61,4 +49,13 @@ Contacts.propTypes = {
 const cursor = {
     cursor: "pointer"
 };
-export default Contacts;
+
+const mapDispatchToProps = dispatch => {
+    return {
+        deleteContact: id => {
+            dispatch({ type: "DELETE_CONTACT", id: id });
+        }
+    };
+};
+
+export default connect(null, mapDispatchToProps)(Contacts);

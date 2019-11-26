@@ -1,26 +1,23 @@
 import React, { Component } from "react";
-import {Consumer} from '../context';
 import Contacts from "./Contacts";
+import { connect } from 'react-redux'
 
 class Contact extends Component {
-  
+    
     render() {
         return(
-            <Consumer>
-            {value => {
-                const {contacts} = value;
-                return(
                     <>
-                {contacts.map(contact => (
+                {this.props.contacts.map(contact => (
                     <Contacts key={contact.id} contact={contact} />
                 ))}
             </>
                 )
-            }}
-            </Consumer>
-        )
         
     }
 }
-
-export default Contact;
+const mapStateToProps = (state) =>{
+    return{
+        contacts: state.contacts
+    }
+}
+export default connect(mapStateToProps)(Contact);
