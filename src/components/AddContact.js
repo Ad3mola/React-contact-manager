@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import { Consumer, Context } from "../context"
+import { Consumer } from "../context"
 import FormInputGroup from "./FormInputGroup"
+import uuid from "uuid"
 
 export default class AddContact extends Component {
-    static contextType = Context
     state = {
         name: "",
         email: "",
@@ -33,9 +33,9 @@ export default class AddContact extends Component {
             this.setState({error:{phone: "phone is required"}});
             return;
         }
-        const {contacts} = this.context
+
         const newContact = {
-            id: contacts.length === -1 ? 0 : contacts.length + 1,
+            id: uuid(),
             name,
             email,
             phone
@@ -48,7 +48,6 @@ export default class AddContact extends Component {
             phone: "",
             error:{}
         })
-        this.props.history.push("/");
         
     };
 

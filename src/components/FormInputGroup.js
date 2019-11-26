@@ -11,21 +11,21 @@ const FormInputGroup = ({
 
 }) => {
     return (
-        <div className="form-group">
-                <label htmlFor={name}>{name}</label>
-                <input
-                type={type}
-                name={name}
-                value={value}
-                onChange={onChange}
-                id={name}
-                className={classnames('form-control', {'is-invalid' : error})}
-                placeholder={placeholder}
-            />
-            {error && <div className="invalid-feedback">
-            {error}
-            </div>}
-                
+         <div className="form-group">
+                            <label htmlFor={name}>Name</label>
+                            <input
+                            type={type}
+                            name={name}
+                            value={value}
+                            onChange={onChange}
+                            id={name}
+                            className={classnames('form-control', {'is-invalid' : error})}
+                            placeholder={placeholder}
+                        />
+                        {error && <div className="invalid-feedback">
+                        {error}
+                   </div>}
+                        
         </div>
     );
 }

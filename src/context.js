@@ -1,7 +1,7 @@
 import React from "react";
 
- export const Context = React.createContext();
- 
+const Context = React.createContext();
+
 const reducer = (state, action) => {
     switch (action.type) {
         case "DELETE_CONTACT":
@@ -9,22 +9,13 @@ const reducer = (state, action) => {
                 ...state,
                 contacts: state.contacts.filter(
                     contact => contact.id !== action.payload
-                ),
-                 list : localStorage.setItem("contacts", JSON.stringify(state.contacts.filter(
-                    contact => contact.id !== action.payload
-                )))
+                )
             };
             case "ADD_CONTACT":
             return {
                 ...state,
-                contacts: [action.payload, ...state.contacts],
-                list : localStorage.setItem("contacts", JSON.stringify([...state.contacts, action.payload]))
+                contacts: [action.payload, ...state.contacts]
             };
-            case "EDIT_CONTACT":
-                return{
-                    ...state.contacts[action.payload.id - 1] = action.payload
-                    
-                };
         default:
             return state;
     }
@@ -32,17 +23,28 @@ const reducer = (state, action) => {
 
 export class Provider extends React.Component {
     state = {
-        contacts: [],
-        list: [],
+        contacts: [
+            {
+                id: 1,
+                name: "Damilola",
+                email: "damilola@gmail.com",
+                phone: "08130688738"
+            },
+            {
+                id: 2,
+                name: "Ademola Madelewi",
+                email: "ademola@gmail.com",
+                phone: "08130688738"
+            },
+            {
+                id: 3,
+                name: "Tinuke",
+                email: "Tinuke@gmail.com",
+                phone: "08130688738"
+            }
+        ],
         dispatch: action => this.setState(state => reducer(state, action))
     };
-
-    componentDidMount() {
-        let list = localStorage.getItem("contacts")
-        list ? this.setState({
-            contacts: JSON.parse(list)
-        }) : localStorage.setItem("contacts", JSON.stringify(this.state.list))   
-    }
     render() {
         return (
             <Context.Provider value={this.state}>
