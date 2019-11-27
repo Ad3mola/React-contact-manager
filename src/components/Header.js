@@ -1,22 +1,20 @@
 import React from 'react'
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom'
+import SignedInLinks from './SignedInLinks'
+import SignedOutLinks from './SignedOutLinks'
 
  function Header({branding}) {
     return (
         <header>
             <nav className="navbar navbar-expand-sm navbar-dark bg-danger mb-3 py-0">
                 <div className="container">
-                    <a href="/" className="navbar-brand">{branding}</a>
+                    <Link to="/" className="navbar-brand">{branding}</Link>
                     <div>
-                        <ul className="navbar-nav mr-auto">
-                            <li className="navbar-item">
-                                <Link to="/" className="nav-link">Home</Link>
-                            </li>
-                            <li className="navbar-item">
-                                <Link to="/contacts/add" className="nav-link">Add</Link>
-                            </li>
-                        </ul>
+                    <ul className="navbar-nav mr-auto">
+                        <SignedInLinks />
+                        <SignedOutLinks />
+                    </ul>
                     </div>
                 </div>
             </nav>

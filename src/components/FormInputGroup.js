@@ -7,12 +7,13 @@ const FormInputGroup = ({
     value,
     onChange,
     placeholder,
-    error
+    error,
+    id
 
 }) => {
     return (
          <div className="form-group">
-                            <label htmlFor={name}>Name</label>
+                            <label htmlFor={name}>{id}</label>
                             <input
                             type={type}
                             name={name}

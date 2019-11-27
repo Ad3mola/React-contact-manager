@@ -61,7 +61,7 @@ import { connect } from 'react-redux'
                             name="name"
                             value={this.state.name}
                             onChange={this.handleChange}
-                            id="name"
+                            id="Name"
                             className="form-control"
                             placeholder="Enter Name..." 
                             error = {this.state.error.name}
@@ -71,7 +71,7 @@ import { connect } from 'react-redux'
                            name="email"
                            value={this.state.email}
                            onChange={this.handleChange}
-                           id="email"
+                           id="Email"
                            className="form-control"
                            placeholder="Enter Email..."
                            error = {this.state.error.email}
@@ -81,7 +81,7 @@ import { connect } from 'react-redux'
                             name="phone"
                             value={this.state.phone}
                             onChange={this.handleChange}
-                            id="phone"
+                            id="Phone"
                             className="form-control"
                             placeholder="Enter Phone..." 
                             error = {this.state.error.phone}

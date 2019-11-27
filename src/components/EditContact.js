@@ -46,6 +46,7 @@ class EditContact extends Component {
             phone: "",
             error:{}
         })
+        this.props.history.push('/')
         
     };
 
@@ -59,7 +60,7 @@ class EditContact extends Component {
                             name="name"
                             value={this.state.name}
                             onChange={this.handleChange}
-                            id="name"
+                            id="Name"
                             className="form-control"
                             placeholder="Enter Name..." 
                             error = {this.state.error.name}
@@ -69,7 +70,7 @@ class EditContact extends Component {
                            name="email"
                            value={this.state.email}
                            onChange={this.handleChange}
-                           id="email"
+                           id="Email"
                            className="form-control"
                            placeholder="Enter Email..."
                            error = {this.state.error.email}
@@ -79,7 +80,7 @@ class EditContact extends Component {
                             name="phone"
                             value={this.state.phone}
                             onChange={this.handleChange}
-                            id="phone"
+                            id="Phone"
                             className="form-control"
                             placeholder="Enter Phone..." 
                             error = {this.state.error.phone}
