@@ -1,23 +1,5 @@
 const initState = {
     contacts: [
-        {
-            id: '1',
-            name: "Ademola Madelewi",
-            email: "ademola@gmail.com",
-            phone: '08130688738'
-        },
-        {
-            id: '2',
-            name: "Damilola Madelewi",
-            email: "damilola@gmail.com",
-            phone: '08130688738'
-        }, 
-        {
-            id: '3',
-            name: "Atinuke Madelewi",
-            email: "atinuke@gmail.com",
-            phone: '08130688738'
-        }
     ]
 }
 

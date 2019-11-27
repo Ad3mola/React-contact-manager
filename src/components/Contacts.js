@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import {deleteContact} from "../actions/deleteContact"
 
 class Contacts extends Component {
     state = {
@@ -34,8 +35,8 @@ class Contacts extends Component {
                 </h4>
                 {this.state.showContactInfo ? (
                     <ul className="list-group">
-                        <li className="list-group-item"> <a href="mailto: {email}"> {email} </a></li>
-                        <li className="list-group-item"><a href="tel: {phone}"> {phone} </a></li>
+                        <li className="list-group-item"> <a href={`mailto: ${email}`}> {email} </a></li>
+                        <li className="list-group-item"><a href={`tel: ${phone}`}> {phone} </a></li>
                     </ul>
                 ) : null}
             </div>
@@ -53,7 +54,7 @@ const cursor = {
 const mapDispatchToProps = dispatch => {
     return {
         deleteContact: id => {
-            dispatch({ type: "DELETE_CONTACT", id: id });
+            dispatch(deleteContact(id));
         }
     };
 };
