@@ -21,7 +21,7 @@ const initState = {
     ]
 }
 
-const rootReducer = (state = initState, action) => {
+const contactReducer = (state = initState, action) => {
     if(action.type === 'DELETE_CONTACT'){
         return{
             
@@ -33,8 +33,10 @@ const rootReducer = (state = initState, action) => {
             ...state,
             contacts: [action.newContact, ...state.contacts]
         }
+    } else if(action.type === 'ERROR_MSG'){
+        console.log(action.err)
     }
     return state
 }
 
-export default rootReducer;
+export default contactReducer;

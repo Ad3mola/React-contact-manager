@@ -34,8 +34,8 @@ class Contacts extends Component {
                 </h4>
                 {this.state.showContactInfo ? (
                     <ul className="list-group">
-                        <li className="list-group-item">{email}</li>
-                        <li className="list-group-item">{phone}</li>
+                        <li className="list-group-item"> <a href="mailto: {email}"> {email} </a></li>
+                        <li className="list-group-item"><a href="tel: {phone}"> {phone} </a></li>
                     </ul>
                 ) : null}
             </div>

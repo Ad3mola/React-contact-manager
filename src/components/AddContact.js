@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import FormInputGroup from "./FormInputGroup"
 import uuid from "uuid"
 import { connect } from 'react-redux'
+import { createContact } from '../actions/createContact'
  class AddContact extends Component {
     state = {
         name: "",
@@ -95,7 +96,7 @@ import { connect } from 'react-redux'
 const mapDispatchToProps = (dispatch) =>{
     return{
         addContact : newContact =>{
-            dispatch({type: 'ADD_CONTACT', newContact: newContact})
+            dispatch(createContact(newContact))
         }
     }
 }

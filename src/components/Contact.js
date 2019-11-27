@@ -17,7 +17,7 @@ class Contact extends Component {
 }
 const mapStateToProps = (state) =>{
     return{
-        contacts: state.contacts
+        contacts: state.contacts.contacts
     }
 }
 export default connect(mapStateToProps)(Contact);
