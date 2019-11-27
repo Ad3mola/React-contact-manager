@@ -18,7 +18,7 @@
       "sizes": "512x512"
     }
   ],
-  "start_url": "/",
+  "start_url": "https://ad3mola.github.io/react-contact-manager/",
   "display": "standalone",
   "theme_color": "#000000",
   "background_color": "tomato"
