@@ -2,7 +2,7 @@
   "name": "contact-manager",
   "version": "0.1.0",
   "private": true,
-  "homepage":"https://ad3mola.github.io/react-contact-manager",
+  "homepage":"https://ad3mola.github.io/react-contact-manager/",
   "dependencies": {
     "bootstrap": "^4.3.1",
     "classnames": "^2.2.6",
